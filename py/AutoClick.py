@@ -42,15 +42,15 @@ def manually_set_loc(s):
             return pyautogui.position()
 def detectPosition():
     input_pos = pyautogui.locateCenterOnScreen('./src/inputbox.JPG', confidence=0.7)
-    if input_pos != None:
+    if input_pos == None:
         print('can not find input position, please check the window')
         input_pos = manually_set_loc("Move your mouse to the input button")
     get_pos_1 = pyautogui.locateCenterOnScreen('./src/get.JPG', confidence=0.7)
     get_pos_2 = pyautogui.locateCenterOnScreen('./src/get1.JPG', confidence=0.7)
     if get_pos_1 != None:
-        get_pos = get_pos_1
+        return [input_pos, get_pos_1]
     if get_pos_2 != None:
-        get_pos = get_pos_2
+        return [input_pos, get_pos_2]
     print('can not find get button position, please check the window')
     get_pos = manually_set_loc("Move your mouse to the \'get\' button")
     return [input_pos, get_pos]
