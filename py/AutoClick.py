@@ -104,9 +104,7 @@ def start_execute(code_lists, input_pos, get_pos):
             time.sleep(delay)
             pyautogui.click(ok_pos_2)
             time.sleep(delay)
-        i+=1
-        if(i>=10):
-            return
+
         if keyboard.is_pressed('ESC'):
             return
 
