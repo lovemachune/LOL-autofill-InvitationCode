@@ -41,31 +41,18 @@ def manually_set_loc(s):
         if keyboard.is_pressed('a'):
             return pyautogui.position()
 def detectPosition():
-    while True:
-        input_pos = pyautogui.locateCenterOnScreen('./src/inputbox.JPG', confidence=0.7)
-        if input_pos != None:
-            break
+    input_pos = pyautogui.locateCenterOnScreen('./src/inputbox.JPG', confidence=0.7)
+    if input_pos != None:
         print('can not find input position, please check the window')
-        print('or long press space to set location manually')
-        if keyboard.is_pressed('Space'):
-            input_pos = manually_set_loc("Move your mouse to the input button")
-            break
-        time.sleep(1)
-    while True:
-        get_pos_1 = pyautogui.locateCenterOnScreen('./src/get.JPG', confidence=0.7)
-        get_pos_2 = pyautogui.locateCenterOnScreen('./src/get1.JPG', confidence=0.7)
-        if get_pos_1 != None:
-            get_pos = get_pos_1
-            break
-        if get_pos_2 != None:
-            get_pos = get_pos_2
-            break
-        print('can not find get button position, please check the window')
-        print('or long press space to set location manually')
-        if keyboard.is_pressed('Space'):
-            get_pos = manually_set_loc("Move your mouse to the \'get\' button")
-            break
-        time.sleep(1)
+        input_pos = manually_set_loc("Move your mouse to the input button")
+    get_pos_1 = pyautogui.locateCenterOnScreen('./src/get.JPG', confidence=0.7)
+    get_pos_2 = pyautogui.locateCenterOnScreen('./src/get1.JPG', confidence=0.7)
+    if get_pos_1 != None:
+        get_pos = get_pos_1
+    if get_pos_2 != None:
+        get_pos = get_pos_2
+    print('can not find get button position, please check the window')
+    get_pos = manually_set_loc("Move your mouse to the \'get\' button")
     return [input_pos, get_pos]
 
 def start_execute(code_lists, input_pos, get_pos):
@@ -87,14 +74,12 @@ def start_execute(code_lists, input_pos, get_pos):
             ok_pos_1 = pyautogui.locateCenterOnScreen('./src/ok.jpg', confidence=0.7)
             if ok_pos_1 == None:
                 print('can not find \'ok\' button position, please check the window')
-                print('or long press space to set location manually')
                 ok_pos_1 = manually_set_loc("Move your mouse to the \'ok\' button")
             pyautogui.click(ok_pos_1)
             time.sleep(delay)
             ok_pos_2 = pyautogui.locateCenterOnScreen('./src/ok.jpg', confidence=0.7)
             if ok_pos_2 == None:
                 print('can not find \'ok\' button position, please check the window')
-                print('or long press space to set location manually')
                 ok_pos_2 = manually_set_loc("Move your mouse to the \'ok\' button")
             pyautogui.click(ok_pos_2)
             time.sleep(delay)
